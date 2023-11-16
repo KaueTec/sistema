@@ -2,19 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.g12.duque.antonio.dao;
+package br.g12.duque.kaue.dao;
 
-import br.g12.duque.antonio.gestor.Conexao;
-import br.g12.duque.antonio.gestor.InterBanco;
-import br.g12.duque.antonio.models.Category;
+import br.g12.duque.kaue.gestor.Conexao;
+import br.g12.duque.kaue.gestor.InterBanco;
+import br.g12.duque.kaue.models.Category;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 /**
  *
- * @author judok
+ * @author 08163
  */
 public class CategoryDao implements InterBanco{
     
@@ -24,8 +23,9 @@ public class CategoryDao implements InterBanco{
         this.category = cat;
     }
     //Annotation ou Decorator que indica:
-    //Que eu vou sobreescrever um método
-    @Override  
+    //Que vou sobreescrever um método
+            
+    @Override 
     public boolean insert() {
         String sql = "INSERT INTO categories "
                 +"(name, description) VALUES "
@@ -34,10 +34,10 @@ public class CategoryDao implements InterBanco{
         Connection conn = Conexao.getConnection();
         try{
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1,category.getName());
-            pst.setString(2,category.getDescription());
+            pst.setString(1, category.getName());
+            pst.setString(2, category.getDescription());
             pst.executeUpdate();
-            success = true;
+            
         }catch(SQLException ex){
             System.out.println("Erro:"+ex.getMessage());
             success = false;
@@ -64,6 +64,5 @@ public class CategoryDao implements InterBanco{
     public boolean findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-      
+    
 }
