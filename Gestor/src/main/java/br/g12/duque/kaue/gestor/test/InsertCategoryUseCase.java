@@ -24,7 +24,7 @@ public class InsertCategoryUseCase {
         boolean success = cd.insert();
         
         if(success){
-            JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+            JOptionPane.showMessageDialog(null, "Operação sucessida com sucesso!");
         }
         else{
             JOptionPane.showMessageDialog(null, "Erro ao salvar registro");
