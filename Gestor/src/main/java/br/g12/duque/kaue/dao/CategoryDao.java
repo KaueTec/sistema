@@ -37,6 +37,7 @@ public class CategoryDao implements InterBanco{
             pst.setString(1, category.getName());
             pst.setString(2, category.getDescription());
             pst.executeUpdate();
+            success = false;
             
         }catch(SQLException ex){
             System.out.println("Erro:"+ex.getMessage());
@@ -47,7 +48,34 @@ public class CategoryDao implements InterBanco{
 
     @Override
     public boolean update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // 1. Definir o comanfo sql que será executado
+        
+        String sql = "UPDATE categories SET "
+                +"SET name = ?, DESCRIPTION = ? "
+                +"WHERE id = ?";
+        // 2. Definir uma variável que dirá se a operação foi bem sucedida
+        
+        boolean success = false;
+        // 3. Conectar a aplicação no banco de dados
+        
+        Connection conn = Conexao.getConnection();
+        // 4. Fazer o tratamento de possiveis erros da aplicação
+        
+        try{
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, category.getName());
+            pst.setString(2, category.getDescription());
+            pst.setInt(3, category.getId());
+            pst.executeUpdate();
+            success = true;
+        }
+        catch(SQLException ex){
+            System.out.println("Erro na operação: "+ ex.getMessage());
+            success = false;
+        }
+        
+        // 5. Aviso o aplicativo se deu certo ou errado
+        return success;
     }
 
     @Override
