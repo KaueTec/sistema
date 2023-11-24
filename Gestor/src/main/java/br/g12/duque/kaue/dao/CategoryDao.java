@@ -40,7 +40,7 @@ public class CategoryDao implements IRepositoryCategory{
             pst.setString(1, category.getName());
             pst.setString(2, category.getDescription());
             pst.executeUpdate();
-            success = false;
+            success = true;
             
         }catch(SQLException ex){
             System.out.println("Erro:"+ex.getMessage());
@@ -54,7 +54,7 @@ public class CategoryDao implements IRepositoryCategory{
         // 1. Definir o comando sql que será executado
         
         String sql = "UPDATE categories SET "
-                +"SET name = ?, DESCRIPTION = ? "
+                +"name = ?, DESCRIPTION = ? "
                 +"WHERE id = ?";
         // 2. Definir uma variável que dirá se a operação foi bem sucedida
         
@@ -148,7 +148,7 @@ public class CategoryDao implements IRepositoryCategory{
 
     @Override
     public Category findById() {
-        String sql = "SELECT name, description FROM categories "
+        String sql = "SELECT id, name, description FROM categories "
                 +"WHERE id = "+ category.getId();
         Category category = null;
         Connection conn = Conexao.getConnection();
