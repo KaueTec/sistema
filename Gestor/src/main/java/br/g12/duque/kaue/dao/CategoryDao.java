@@ -166,7 +166,7 @@ public class CategoryDao implements IRepositoryCategory{
                 );
             }
             else{
-                System.out.println("Categoria não encontrada");
+                System.out.println("Categoria não encontrada!");
                 return null;
             }
         }
